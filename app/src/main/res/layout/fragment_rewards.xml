@@ -84,7 +84,7 @@
         android:layout_height="wrap_content"
         android:text="Lista nagrada"
         android:textColor="#31343D"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         android:layout_marginEnd="15dp"
         app:layout_constraintStart_toStartOf="@id/rewards_edittext_search"
@@ -98,27 +98,28 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:background="@drawable/background_rewards_points"
+        android:background="@drawable/red_rounded_rectangle_cutoff_right"
         android:elevation="10dp"
         android:paddingVertical="5dp"
         android:paddingHorizontal="10dp"
         android:layout_marginTop="15dp"
-        app:layout_constraintEnd_toEndOf="@id/rewards_edittext_search"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/rewards_edittext_search">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/points" />
-
         <TextView
             android:id="@+id/rewards_text_points"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="   "
-            android:textColor="@color/black"
+            android:text="999"
+            android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:layout_marginEnd="5dp"
             android:layout_marginStart="5dp" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:src="@drawable/points" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

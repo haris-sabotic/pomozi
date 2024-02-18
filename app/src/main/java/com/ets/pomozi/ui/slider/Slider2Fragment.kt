@@ -40,9 +40,6 @@ class Slider2Fragment : Fragment() {
                 findNavController().navigate(R.id.action_slider2_to_slider3)
             }
         }, 2000)
-
-        binding.slider2ButtonLogin.setOnClickListener { findNavController().navigate(R.id.action_slider2_to_login) }
-        binding.slider2ButtonRegister.setOnClickListener { findNavController().navigate(R.id.action_slider2_to_register) }
     }
 
     override fun onDestroyView() {

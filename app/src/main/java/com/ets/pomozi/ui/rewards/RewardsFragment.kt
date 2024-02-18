@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ets.pomozi.R
 import com.ets.pomozi.databinding.FragmentRewardsBinding
@@ -65,7 +66,10 @@ class RewardsFragment : Fragment() {
         binding.rewardsTextTitle.paint.setShader(textShader)
 
         binding.rewardsRecycler.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        binding.rewardsRecycler.adapter = RewardsRecyclerViewAdapter(requireContext(), rewards)
+        binding.rewardsRecycler.adapter = RewardsRecyclerViewAdapter(requireContext(), rewards) { reward ->
+            val action = RewardsFragmentDirections.actionRewardsToDialogRewardsBuy(reward)
+            findNavController().navigate(action)
+        }
 
         binding.rewardsEdittextSearch.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {

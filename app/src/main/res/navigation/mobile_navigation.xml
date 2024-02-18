@@ -259,7 +259,20 @@
             app:popExitAnim="@anim/fade_in"
             app:popEnterAnim="@anim/fade_out"
             app:destination="@id/navigation_profile" />
+
+        <action
+            android:id="@+id/action_rewards_to_dialog_rewards_buy"
+            app:destination="@id/navigation_rewards_buy_dialog" />
     </fragment>
+
+    <dialog
+        android:id="@+id/navigation_rewards_buy_dialog"
+        android:name="com.ets.pomozi.ui.rewards.RewardsBuyDialog"
+        tools:layout="@layout/dialog_rewards_buy">
+        <argument
+            android:name="reward"
+            app:argType="com.ets.pomozi.models.RewardModel" />
+    </dialog>
 
     <fragment
         android:id="@+id/navigation_map"

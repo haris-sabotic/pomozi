@@ -39,54 +39,39 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="30dp"
-        android:text="Donirajte stvari koje vam ne trebaju putem naše aplikacije"
-        android:textSize="36sp"
+        android:text="Podijelite i pomozite onima kojima je potrebno"
+        android:textSize="40sp"
         android:textColor="@color/cool_blue_gray"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/slider_1_button_register"
-        android:layout_marginBottom="55dp"
+        app:layout_constraintBottom_toTopOf="@id/slider_1_dots"
+        android:layout_marginBottom="30dp"
         />
 
-    <FrameLayout
-        android:id="@+id/slider_1_button_register"
-        android:layout_width="155dp"
+    <LinearLayout
+        android:id="@+id/slider_1_dots"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/slider_register_button_background"
-        android:paddingVertical="15dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/slider_1_button_login"
-        app:layout_constraintBottom_toBottomOf="parent"
-        >
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Registruj se"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/slider_1_button_login"
-        android:layout_width="155dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/slider_login_button_background"
-        android:paddingVertical="15dp"
-        android:layout_marginBottom="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/slider_1_button_register"
-        app:layout_constraintBottom_toBottomOf="parent"
-        >
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Prijavi se"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
-    </FrameLayout>
+        app:layout_constraintEnd_toEndOf="parent">
+        <View
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/white_circle" />
+        <View
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginHorizontal="10dp"
+            android:alpha="0.5"
+            android:background="@drawable/white_circle" />
+        <View
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginHorizontal="10dp"
+            android:alpha="0.5"
+            android:background="@drawable/white_circle" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

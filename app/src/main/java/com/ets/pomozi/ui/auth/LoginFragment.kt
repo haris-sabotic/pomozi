@@ -62,7 +62,6 @@ class LoginFragment : Fragment() {
             }
         }
 
-        binding.loginButtBack.setOnClickListener { findNavController().navigate(R.id.action_login_to_slider1) }
         binding.loginTextRegister.setOnClickListener { findNavController().navigate(R.id.action_login_to_register) }
     }
 

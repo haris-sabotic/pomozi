@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ets.pomozi.R
 import android.view.ViewGroup
 import android.view.LayoutInflater
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation
 import com.bumptech.glide.request.RequestOptions
@@ -17,16 +18,19 @@ import jp.wasabeef.glide.transformations.BlurTransformation
 class RewardsRecyclerViewAdapter (
     private val context: Context,
     private val dataSet: ArrayList<RewardModel>,
+    private val onClick: (RewardModel) -> Unit
 ) :
     RecyclerView.Adapter<RewardsRecyclerViewAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val root: ConstraintLayout
         val photo: ImageView
         val textTitle: TextView
         val textDescription: TextView
         val textPrice: TextView
 
         init {
+            root = view.findViewById(R.id.item_rewards_root)
             photo = view.findViewById(R.id.item_rewards_photo)
             textTitle = view.findViewById(R.id.item_rewards_text_title)
             textDescription = view.findViewById(R.id.item_rewards_text_description)
@@ -43,6 +47,8 @@ class RewardsRecyclerViewAdapter (
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val reward = dataSet[position]
+
+        viewHolder.root.setOnClickListener { onClick(reward) }
 
         viewHolder.textTitle.text = reward.title
         viewHolder.textDescription.text = reward.description

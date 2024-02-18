@@ -63,7 +63,6 @@ class RegisterFragment : Fragment() {
             }
         }
 
-        binding.registerButtBack.setOnClickListener { findNavController().navigate(R.id.action_register_to_slider1) }
         binding.registerTextLogin.setOnClickListener { findNavController().navigate(R.id.action_register_to_login) }
     }
 
