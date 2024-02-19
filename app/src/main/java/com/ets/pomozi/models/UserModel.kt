@@ -12,6 +12,7 @@ data class UserModel (
     var photo: String,
     var donatedAmount: Float,
     var points: Int,
+    var achievements: AchievementsModel
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
@@ -21,7 +22,8 @@ data class UserModel (
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readFloat(),
-        parcel.readInt()
+        parcel.readInt(),
+        parcel.readParcelable(AchievementsModel::class.java.classLoader)!!
     ) {
     }
 
@@ -34,6 +36,7 @@ data class UserModel (
         parcel.writeString(photo)
         parcel.writeFloat(donatedAmount)
         parcel.writeInt(points)
+        parcel.writeParcelable(achievements, flags)
     }
 
     override fun describeContents(): Int {

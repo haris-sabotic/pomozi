@@ -44,7 +44,7 @@ class ActivityRecyclerViewAdapter (
         viewHolder.textDate.text = donation.date
 
         val part1 = "${donation.donatedAmount}€ donirano "
-        val part2 = donation.donatedTo
+        val part2 = donation.donatedTo.donatedToName
         val mainText = SpannableStringBuilder(part1 + part2)
         mainText.setSpan(
             StyleSpan(Typeface.BOLD),

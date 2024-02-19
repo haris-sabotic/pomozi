@@ -13,8 +13,10 @@ import android.widget.ArrayAdapter
 import androidx.annotation.DrawableRes
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.ets.pomozi.databinding.FragmentMapBinding
 import com.ets.pomozi.models.OrganizationModel
+import com.ets.pomozi.ui.OrganizationViewModel
 import com.ets.pomozi.util.GlobalData
 import com.mapbox.geojson.Point
 import com.mapbox.maps.CameraOptions
@@ -25,6 +27,8 @@ import com.mapbox.maps.plugin.annotation.generated.createPointAnnotationManager
 
 
 class MapFragment : Fragment() {
+    private val organizationViewModel: OrganizationViewModel by activityViewModels()
+
     private var _binding: FragmentMapBinding? = null
 
     // This property is only valid between onCreateView and
@@ -45,63 +49,66 @@ class MapFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        organizationViewModel.loadOrganizations("")
+
         // setup map
         binding.map.mapboxMap
             .apply {
                 setCamera(
                     CameraOptions.Builder()
-                        .center(Point.fromLngLat(GlobalData.ORGANIZATIONS[0].longitude, GlobalData.ORGANIZATIONS[0].latitude))
-                        .zoom(9.0)
+                        .center(Point.fromLngLat(19.53279915579785, 43.67192960911034))
+                        .zoom(5.0)
                         .build()
                 )
             }
 
-        // add markers to map
-        binding.map.mapboxMap.loadStyleUri(
-            Style.MAPBOX_STREETS
-        ) {
-            for (org in GlobalData.ORGANIZATIONS) {
-                addAnnotationToMap(org.longitude, org.latitude)
-            }
-        }
-
-        // set up filters
-
-        val arraySpinner = GlobalData.ORGANIZATIONS.map { it.name }
-        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
-            requireContext(),
-            android.R.layout.simple_spinner_item, arraySpinner
-        )
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.mapFiltersSpinner.adapter = adapter
-
-
-        binding.mapButtonFilters.setOnClickListener {
-            binding.mapButtonFilters.visibility = View.GONE
-            binding.mapLayoutFilters.visibility = View.VISIBLE
-        }
-
-        binding.mapFiltersButtonSave.setOnClickListener {
-            binding.mapButtonFilters.visibility = View.VISIBLE
-            binding.mapLayoutFilters.visibility = View.GONE
-
-            var organization: OrganizationModel = GlobalData.ORGANIZATIONS[0]
-            for (org in GlobalData.ORGANIZATIONS) {
-                if (org.name == binding.mapFiltersSpinner.selectedItem) {
-                    organization = org
-                    break
+        organizationViewModel.organizations.observe(viewLifecycleOwner) { organizations ->
+            binding.map.mapboxMap.loadStyleUri(
+                Style.MAPBOX_STREETS
+            ) {
+                for (org in organizations) {
+                    addAnnotationToMap(org.longitude.toDouble(), org.latitude.toDouble())
                 }
             }
 
-            binding.map.mapboxMap
-                .apply {
-                    setCamera(
-                        CameraOptions.Builder()
-                            .center(Point.fromLngLat(organization.longitude, organization.latitude))
-                            .zoom(15.0)
-                            .build()
-                    )
+            // set up filters
+
+            val arraySpinner = organizations.map { it.name }
+            val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
+                requireContext(),
+                android.R.layout.simple_spinner_item, arraySpinner
+            )
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            binding.mapFiltersSpinner.adapter = adapter
+
+
+            binding.mapButtonFilters.setOnClickListener {
+                binding.mapButtonFilters.visibility = View.GONE
+                binding.mapLayoutFilters.visibility = View.VISIBLE
+            }
+
+            binding.mapFiltersButtonSave.setOnClickListener {
+                binding.mapButtonFilters.visibility = View.VISIBLE
+                binding.mapLayoutFilters.visibility = View.GONE
+
+                var organization: OrganizationModel = organizations[0]
+                for (org in organizations) {
+                    if (org.name == binding.mapFiltersSpinner.selectedItem) {
+                        organization = org
+                        break
+                    }
                 }
+
+                binding.map.mapboxMap
+                    .apply {
+                        setCamera(
+                            CameraOptions.Builder()
+                                .center(Point.fromLngLat(organization.longitude.toDouble(), organization.latitude.toDouble()))
+                                .zoom(15.0)
+                                .build()
+                        )
+                    }
+            }
         }
     }
 

@@ -5,14 +5,14 @@ import android.os.Parcelable
 
 data class DonationModel (
     var id: Int,
-    var donatedTo: String,
+    var donatedTo: OrganizationModel,
     var donatedAmount: Float,
     var points: Int,
     var date: String,
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
-        parcel.readString()!!,
+        parcel.readParcelable(OrganizationModel::class.java.classLoader)!!,
         parcel.readFloat(),
         parcel.readInt(),
         parcel.readString()!!
@@ -21,7 +21,7 @@ data class DonationModel (
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(id)
-        parcel.writeString(donatedTo)
+        parcel.writeParcelable(donatedTo, flags)
         parcel.writeFloat(donatedAmount)
         parcel.writeInt(points)
         parcel.writeString(date)

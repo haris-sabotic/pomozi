@@ -19,4 +19,6 @@
     <color name="gray_text">#646982</color>
     <color name="gray_text_2">#737477</color>
     <color name="gray_text_3">#59000000</color>
+    <color name="achievement_active">#FFB800</color>
+    <color name="achievement_inactive">#737477</color>
 </resources>

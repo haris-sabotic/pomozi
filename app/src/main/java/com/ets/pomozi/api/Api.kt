@@ -5,7 +5,10 @@ import com.ets.pomozi.api.requests.LoginRequest
 import com.ets.pomozi.api.requests.RegisterRequest
 import com.ets.pomozi.api.responses.GenericResponse
 import com.ets.pomozi.models.DonationModel
+import com.ets.pomozi.models.OrganizationModel
+import com.ets.pomozi.models.RewardModel
 import com.ets.pomozi.models.UserModel
+import com.ets.pomozi.models.UserRewardModel
 import com.ets.pomozi.util.GlobalData
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -71,4 +74,16 @@ interface ApiInterface {
 
     @GET("user/donations")
     fun donations(@Header("Authorization") token: String): Call<GenericResponse<ArrayList<DonationModel>>>
+
+    @GET("reward")
+    fun rewards(@Query("query") query: String): Call<GenericResponse<ArrayList<RewardModel>>>
+
+    @GET("reward/user")
+    fun userRewards(@Header("Authorization") token: String): Call<GenericResponse<ArrayList<UserRewardModel>>>
+
+    @POST("reward/buy/{id}")
+    fun buyReward(@Header("Authorization") token: String, @Path("id") rewardId: Int): Call<GenericResponse<Unit?>>
+
+    @GET("organization")
+    fun organizations(@Query("query") query: String): Call<GenericResponse<ArrayList<OrganizationModel>>>
 }

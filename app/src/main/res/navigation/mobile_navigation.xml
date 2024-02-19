@@ -347,7 +347,20 @@
             app:popExitAnim="@anim/fade_in"
             app:popEnterAnim="@anim/fade_out"
             app:destination="@id/navigation_edit_profile" />
+
+        <action
+            android:id="@+id/action_profile_to_dialog_achievements"
+            app:destination="@id/navigation_achievements_dialog" />
     </fragment>
+
+    <dialog
+        android:id="@+id/navigation_achievements_dialog"
+        android:name="com.ets.pomozi.ui.profile.AchievementsDialog"
+        tools:layout="@layout/dialog_achievements">
+        <argument
+            android:name="achievements"
+            app:argType="com.ets.pomozi.models.AchievementsModel" />
+    </dialog>
 
     <fragment
         android:id="@+id/navigation_edit_profile"

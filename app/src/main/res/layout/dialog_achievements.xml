@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingTop="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bottom_sheet_dialog_background"
+    android:clickable="true"
+    tools:context=".ui.profile.AchievementsDialog">
+
+    <View
+        android:layout_width="150dp"
+        android:layout_height="5dp"
+        android:background="@drawable/rounded_gray_line"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/dialog_achievements_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DOSTIGNUĆA"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#9098A3"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="30dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/dialog_achievements_title_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="13/16"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#9098A3"
+        android:alpha="0.5"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toTopOf="@id/dialog_achievements_title"
+        app:layout_constraintBottom_toBottomOf="@id/dialog_achievements_title"
+        app:layout_constraintStart_toEndOf="@id/dialog_achievements_title" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/dialog_achievements_title"
+        android:paddingTop="10dp"
+        android:paddingBottom="30dp"
+        android:paddingHorizontal="20dp"
+        android:clipToPadding="false">
+
+        <LinearLayout
+            android:id="@+id/dialog_achievements_one_year"
+            android:layout_width="80dp"
+            android:layout_height="90dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/white_rounded_rectangle"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:elevation="10dp">
+            <ImageView
+                android:id="@+id/dialog_achievements_one_year_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/achievement_one_year" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="1 godina"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/dialog_achievements_six_months"
+            android:layout_width="80dp"
+            android:layout_height="90dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/white_rounded_rectangle"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/dialog_achievements_one_year"
+            app:layout_constraintEnd_toStartOf="@id/dialog_achievements_hundred_donated"
+            android:elevation="10dp">
+            <ImageView
+                android:id="@+id/dialog_achievements_six_months_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/achievement_six_months" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="6 mjeseci"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/dialog_achievements_hundred_donated"
+            android:layout_width="80dp"
+            android:layout_height="90dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/white_rounded_rectangle"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/dialog_achievements_fifty_donated"
+            app:layout_constraintStart_toEndOf="@id/dialog_achievements_six_months"
+            android:elevation="10dp">
+            <ImageView
+                android:id="@+id/dialog_achievements_hundred_donated_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/achievement_hundred_donated" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="100€ donirano"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/dialog_achievements_fifty_donated"
+            android:layout_width="80dp"
+            android:layout_height="90dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/white_rounded_rectangle"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:elevation="10dp">
+            <ImageView
+                android:id="@+id/dialog_achievements_fifty_donated_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/achievement_fifty_donations" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="50€ donirano"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- SEPARATOR -->
+
+        <LinearLayout
+            android:id="@+id/dialog_achievements_ten_donated"
+            android:layout_width="80dp"
+            android:layout_height="90dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/white_rounded_rectangle"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/dialog_achievements_one_year"
+            app:layout_constraintStart_toStartOf="parent"
+            android:elevation="10dp">
+            <ImageView
+                android:id="@+id/dialog_achievements_ten_donated_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/achievement_ten_donated" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="10€ donirano"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/dialog_achievements_ten_donations"
+            android:layout_width="80dp"
+            android:layout_height="90dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/white_rounded_rectangle"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/dialog_achievements_one_year"
+            app:layout_constraintStart_toEndOf="@id/dialog_achievements_one_year"
+            app:layout_constraintEnd_toStartOf="@id/dialog_achievements_hundred_donated"
+            android:elevation="10dp">
+            <ImageView
+                android:id="@+id/dialog_achievements_ten_donations_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/achievement_ten_donations" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="10 donacija"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/dialog_achievements_first_donation"
+            android:layout_width="80dp"
+            android:layout_height="90dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/white_rounded_rectangle"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/dialog_achievements_one_year"
+            app:layout_constraintEnd_toStartOf="@id/dialog_achievements_fifty_donated"
+            app:layout_constraintStart_toEndOf="@id/dialog_achievements_six_months"
+            android:elevation="10dp">
+            <ImageView
+                android:id="@+id/dialog_achievements_first_donation_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/achievement_first_donation" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Prva donacija"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/dialog_achievements_ten_rewards_bought"
+            android:layout_width="80dp"
+            android:layout_height="90dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/white_rounded_rectangle"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/dialog_achievements_one_year"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:elevation="10dp">
+            <ImageView
+                android:id="@+id/dialog_achievements_ten_rewards_bought_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/achievement_ten_rewards_bought" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="10 nagrada kupljeno"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- SEPARATOR -->
+
+        <LinearLayout
+            android:id="@+id/dialog_achievements_five_rewards_bought"
+            android:layout_width="80dp"
+            android:layout_height="90dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/white_rounded_rectangle"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/dialog_achievements_ten_donated"
+            app:layout_constraintStart_toStartOf="parent"
+            android:elevation="10dp">
+            <ImageView
+                android:id="@+id/dialog_achievements_five_rewards_bought_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/achievement_five_rewards_bought" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="5 nagrada kupljeno"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/dialog_achievements_reward_bought"
+            android:layout_width="80dp"
+            android:layout_height="90dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/white_rounded_rectangle"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/dialog_achievements_ten_donated"
+            app:layout_constraintStart_toEndOf="@id/dialog_achievements_one_year"
+            app:layout_constraintEnd_toStartOf="@id/dialog_achievements_hundred_donated"
+            android:elevation="10dp">
+            <ImageView
+                android:id="@+id/dialog_achievements_reward_bought_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/achievement_reward_bought" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Nagrada kupljena"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/dialog_achievements_hundred_points_acquired"
+            android:layout_width="80dp"
+            android:layout_height="90dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/white_rounded_rectangle"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/dialog_achievements_ten_donated"
+            app:layout_constraintEnd_toStartOf="@id/dialog_achievements_fifty_donated"
+            app:layout_constraintStart_toEndOf="@id/dialog_achievements_six_months"
+            android:elevation="10dp">
+            <ImageView
+                android:id="@+id/dialog_achievements_hundred_points_acquired_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/achievement_hundred_points_acquired" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="100 poena dobijeno"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/dialog_achievements_ranked"
+            android:layout_width="80dp"
+            android:layout_height="90dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/white_rounded_rectangle"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/dialog_achievements_ten_donated"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:elevation="10dp">
+            <ImageView
+                android:id="@+id/dialog_achievements_ranked_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/achievement_ranked" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Rangiran"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- SEPARATOR -->
+
+        <LinearLayout
+            android:id="@+id/dialog_achievements_account_created"
+            android:layout_width="80dp"
+            android:layout_height="90dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/white_rounded_rectangle"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/dialog_achievements_five_rewards_bought"
+            app:layout_constraintStart_toStartOf="parent"
+            android:elevation="10dp">
+            <ImageView
+                android:id="@+id/dialog_achievements_account_created_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/achievement_account_created" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Nalog kreiran"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/dialog_achievements_top_three"
+            android:layout_width="80dp"
+            android:layout_height="90dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/white_rounded_rectangle"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/dialog_achievements_five_rewards_bought"
+            app:layout_constraintStart_toEndOf="@id/dialog_achievements_one_year"
+            app:layout_constraintEnd_toStartOf="@id/dialog_achievements_hundred_donated"
+            android:elevation="10dp">
+            <ImageView
+                android:id="@+id/dialog_achievements_top_three_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/achievement_top_three" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Top 3"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/dialog_achievements_hundred_donations"
+            android:layout_width="80dp"
+            android:layout_height="90dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/white_rounded_rectangle"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/dialog_achievements_five_rewards_bought"
+            app:layout_constraintEnd_toStartOf="@id/dialog_achievements_fifty_donated"
+            app:layout_constraintStart_toEndOf="@id/dialog_achievements_six_months"
+            android:elevation="10dp">
+            <ImageView
+                android:id="@+id/dialog_achievements_hundred_donations_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/achievement_hundred_donations" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="100 donacija"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/dialog_achievements_fifty_donations"
+            android:layout_width="80dp"
+            android:layout_height="90dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/white_rounded_rectangle"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/dialog_achievements_five_rewards_bought"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:elevation="10dp">
+            <ImageView
+                android:id="@+id/dialog_achievements_fifty_donations_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/achievement_fifty_donations" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="50 donacija"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

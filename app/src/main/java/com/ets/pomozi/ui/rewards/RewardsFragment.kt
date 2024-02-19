@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -23,6 +24,7 @@ import okhttp3.internal.notifyAll
 
 class RewardsFragment : Fragment() {
     val userViewModel: UserViewModel by activityViewModels()
+    val rewardsViewModel: RewardsViewModel by activityViewModels()
 
     private var _binding: FragmentRewardsBinding? = null
 
@@ -46,7 +48,17 @@ class RewardsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setRewards("")
+        rewardsViewModel.error.observe(viewLifecycleOwner) {
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+        }
+
+        rewardsViewModel.loadRewards("")
+        binding.rewardsSwipeRefresh.isRefreshing = true
+
+        binding.rewardsSwipeRefresh.setOnRefreshListener {
+            val text: String = binding.rewardsEdittextSearch.text.toString()
+            rewardsViewModel.loadRewards(text.trim())
+        }
 
         // setup user photo and points
         userViewModel.userData.value?.let {
@@ -74,29 +86,25 @@ class RewardsFragment : Fragment() {
         binding.rewardsEdittextSearch.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 val text: String = binding.rewardsEdittextSearch.text.toString()
-                setRewards(text.trim())
+                rewardsViewModel.loadRewards(text.trim())
+                binding.rewardsSwipeRefresh.isRefreshing = true
                 return@setOnEditorActionListener true
             }
 
             false
         }
-    }
 
-    private fun setRewards(query: String) {
-        rewards.clear()
-
-        if (query.isEmpty()) {
-            rewards.addAll(GlobalData.REWARDS)
-        } else {
-            for (reward in GlobalData.REWARDS) {
-                if (reward.title.contains(query, true)) {
-                    rewards.add(reward)
-                }
+        rewardsViewModel.rewards.observe(viewLifecycleOwner) {
+            binding.rewardsSwipeRefresh.isRefreshing = false
+            rewards.clear()
+            for (reward in it) {
+                rewards.add(reward)
             }
-        }
 
-        binding.rewardsRecycler.adapter?.notifyDataSetChanged()
+            binding.rewardsRecycler.adapter?.notifyDataSetChanged()
+        }
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
