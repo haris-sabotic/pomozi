@@ -5,6 +5,7 @@ import android.graphics.Typeface
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.StyleSpan
+import android.text.style.TypefaceSpan
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -13,6 +14,7 @@ import com.ets.pomozi.R
 import com.ets.pomozi.models.DonationModel
 import android.view.ViewGroup
 import android.view.LayoutInflater
+import androidx.core.content.res.ResourcesCompat
 
 class ActivityRecyclerViewAdapter (
     private val context: Context,
@@ -46,8 +48,10 @@ class ActivityRecyclerViewAdapter (
         val part1 = "${donation.donatedAmount}€ donirano "
         val part2 = donation.donatedTo.donatedToName
         val mainText = SpannableStringBuilder(part1 + part2)
+        val mediumTypeface = Typeface.create(ResourcesCompat.getFont(context, R.font.poppins_black), Typeface.NORMAL)
+
         mainText.setSpan(
-            StyleSpan(Typeface.BOLD),
+            TypefaceSpan(mediumTypeface),
             part1.length,
             part1.length + part2.length,
             Spannable.SPAN_INCLUSIVE_INCLUSIVE

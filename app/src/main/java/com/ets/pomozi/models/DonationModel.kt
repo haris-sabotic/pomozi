@@ -9,13 +9,17 @@ data class DonationModel (
     var donatedAmount: Float,
     var points: Int,
     var date: String,
+    var timestamp: String,
+    var user: UserModel
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
         parcel.readParcelable(OrganizationModel::class.java.classLoader)!!,
         parcel.readFloat(),
         parcel.readInt(),
-        parcel.readString()!!
+        parcel.readString()!!,
+        parcel.readString()!!,
+        parcel.readParcelable(UserModel::class.java.classLoader)!!
     ) {
     }
 
@@ -25,6 +29,8 @@ data class DonationModel (
         parcel.writeFloat(donatedAmount)
         parcel.writeInt(points)
         parcel.writeString(date)
+        parcel.writeString(timestamp)
+        parcel.writeParcelable(user, flags)
     }
 
     override fun describeContents(): Int {

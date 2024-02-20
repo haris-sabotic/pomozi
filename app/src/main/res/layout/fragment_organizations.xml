@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/organizations_swipe_refresh"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.OrganizationsFragment">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/organizations_header_text_app"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pomozi#"
+            android:textColor="@color/gray_text_2"
+            android:textSize="15sp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+        <TextView
+            android:id="@+id/organizations_header_text_screen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lista Organizacija"
+            android:textColor="@color/red_on_cool_blue_gray"
+            android:textSize="15sp"
+            app:layout_constraintTop_toBottomOf="@id/organizations_header_text_app"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/organizations_text_donate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/TextBold"
+            android:text="Donirajte ogranizacijama!"
+            android:textSize="25sp"
+            android:textColor="@color/red_on_cool_blue_gray"
+            android:layout_marginTop="30dp"
+            app:layout_constraintStart_toStartOf="@id/organizations_edittext_search"
+            app:layout_constraintEnd_toEndOf="@id/organizations_edittext_search"
+            app:layout_constraintTop_toBottomOf="@id/organizations_header_text_screen" />
+
+        <FrameLayout
+            android:id="@+id/organizations_arrow_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_rounded_rectangle"
+            android:padding="7dp"
+            android:elevation="10dp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/organizations_header_text_app"
+            app:layout_constraintBottom_toBottomOf="@id/organizations_header_text_screen">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleX="-1"
+                android:src="@drawable/arrow_right" />
+        </FrameLayout>
+
+
+        <EditText
+            android:id="@+id/organizations_edittext_search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/input_background"
+            android:textColor="@color/cool_blue_gray"
+            android:textColorHint="@color/input_text_color"
+            android:textSize="14sp"
+            android:hint="Pretražite organizacije"
+            android:inputType="text"
+            android:drawableStart="@drawable/search"
+            android:drawablePadding="15dp"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="20dp"
+            app:layout_constraintTop_toBottomOf="@id/organizations_text_donate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/organizations_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingTop="10dp"
+            android:paddingHorizontal="20dp"
+            android:clipToPadding="false"
+            android:clipChildren="false"
+            android:layout_marginTop="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/organizations_edittext_search"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

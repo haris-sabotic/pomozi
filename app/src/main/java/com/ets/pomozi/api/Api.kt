@@ -4,6 +4,8 @@ import com.ets.pomozi.api.requests.EditUserRequest
 import com.ets.pomozi.api.requests.LoginRequest
 import com.ets.pomozi.api.requests.RegisterRequest
 import com.ets.pomozi.api.responses.GenericResponse
+import com.ets.pomozi.api.responses.Last2DonationsResponse
+import com.ets.pomozi.models.ActionModel
 import com.ets.pomozi.models.DonationModel
 import com.ets.pomozi.models.OrganizationModel
 import com.ets.pomozi.models.RewardModel
@@ -86,4 +88,16 @@ interface ApiInterface {
 
     @GET("organization")
     fun organizations(@Query("query") query: String): Call<GenericResponse<ArrayList<OrganizationModel>>>
+
+    @GET("stats/leaderboard")
+    fun leaderboard(): Call<GenericResponse<ArrayList<UserModel>>>
+
+    @GET("stats/top-donation")
+    fun topDonation(): Call<GenericResponse<DonationModel?>>
+
+    @GET("stats/last-2-donations")
+    fun last2Donations(): Call<GenericResponse<Last2DonationsResponse>>
+
+    @GET("action")
+    fun actions(): Call<GenericResponse<ArrayList<ActionModel>>>
 }

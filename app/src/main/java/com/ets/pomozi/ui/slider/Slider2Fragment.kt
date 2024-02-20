@@ -36,10 +36,13 @@ class Slider2Fragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            if (canSlide) {
+            if (canSlide && findNavController().currentDestination?.id == R.id.navigation_slider2) {
                 findNavController().navigate(R.id.action_slider2_to_slider3)
             }
-        }, 2000)
+        }, 5000)
+
+        binding.slider2OverlayLeft.setOnClickListener { findNavController().navigate(R.id.action_slider2_to_slider1) }
+        binding.slider2OverlayRight.setOnClickListener { findNavController().navigate(R.id.action_slider2_to_slider3) }
     }
 
     override fun onDestroyView() {

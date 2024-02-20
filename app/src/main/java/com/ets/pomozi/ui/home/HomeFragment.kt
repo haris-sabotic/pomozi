@@ -1,24 +1,31 @@
 package com.ets.pomozi.ui.home
 
-import android.graphics.Color
-import android.graphics.LinearGradient
-import android.graphics.Shader
+import android.graphics.Typeface
 import android.os.Bundle
-import android.text.TextPaint
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.TypefaceSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.ets.pomozi.R
 import com.ets.pomozi.databinding.FragmentHomeBinding
+import com.ets.pomozi.models.ActionModel
 import com.ets.pomozi.models.OrganizationModel
-import com.ets.pomozi.ui.UserViewModel
+import com.ets.pomozi.util.addGradientToTextView
 import com.ets.pomozi.util.setPhoto
+import kotlin.math.abs
 
 
 class HomeFragment : Fragment() {
-    val userViewModel: UserViewModel by activityViewModels()
+    val homeViewModel: HomeViewModel by activityViewModels()
 
     private var _binding: FragmentHomeBinding? = null
 
@@ -26,7 +33,7 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private var organizations = arrayListOf<OrganizationModel>()
+    private var actions = mutableListOf<ActionModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,16 +49,138 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // setup user photo
-        userViewModel.userData.value?.let { setPhoto(requireContext(), binding.registerHeaderPhoto, it.photo, R.drawable.default_user) }
-        userViewModel.userData.observe(viewLifecycleOwner) { setPhoto(requireContext(), binding.registerHeaderPhoto, it.photo, R.drawable.default_user) }
+        homeViewModel.loadLast2Donations()
+        homeViewModel.loadTopDonation()
+        homeViewModel.loadActions()
+        binding.homeSwipeRefresh.isRefreshing = true
 
-        // Add gradient to title
-        val paint: TextPaint = binding.registerTextDonate.paint
-        val width: Float = paint.measureText(binding.registerTextDonate.text.toString())
-        val colors = intArrayOf(Color.parseColor("#FE724D"), Color.parseColor("#FFC529"));
-        val textShader: Shader = LinearGradient(0F, 0F, width, binding.registerTextDonate.textSize, colors, null, Shader.TileMode.CLAMP)
-        binding.registerTextDonate.paint.setShader(textShader)
+        binding.homeSwipeRefresh.setOnRefreshListener {
+            homeViewModel.loadLast2Donations()
+            homeViewModel.loadTopDonation()
+            homeViewModel.loadActions()
+        }
+
+        addGradientToTextView(binding.homeTextHeader, "#FE724D", "#FFC529")
+        addGradientToTextView(binding.homeTextDonations, "#FE724D", "#FFC529")
+        addGradientToTextView(binding.homeDonationPrimaryTitle, "#FE724D", "#FFC529")
+        addGradientToTextView(binding.homeTextActions, "#FE724D", "#FFC529")
+
+        binding.homeTextOrganizationList.setOnClickListener {
+            findNavController().navigate(R.id.action_home_to_organizations)
+        }
+
+        binding.homeTextLeaderboard.setOnClickListener {
+            findNavController().navigate(R.id.action_home_to_leaderboard)
+        }
+
+        homeViewModel.topDonation.observe(viewLifecycleOwner) {
+            binding.homeSwipeRefresh.isRefreshing = false
+
+            it?.let { topDonation ->
+                // set photo
+                setPhoto(requireContext(), binding.homeDonationPrimaryPhoto, topDonation.user.photo, R.drawable.default_user)
+
+                // set text (with formatting)
+
+                val part1 = topDonation.user.name
+                val part2 = " je donirao/la "
+                val part3 = "${topDonation.donatedAmount}€"
+                val wholeText = part1 + part2 + part3
+                val spanText = SpannableStringBuilder(wholeText)
+                val blackTypeface = Typeface.create(ResourcesCompat.getFont(requireContext(), R.font.poppins_black), Typeface.NORMAL)
+
+                spanText.setSpan(
+                    TypefaceSpan(blackTypeface),
+                    0,
+                    part1.length,
+                    Spannable.SPAN_INCLUSIVE_INCLUSIVE
+                )
+
+                spanText.setSpan(
+                    TypefaceSpan(blackTypeface),
+                    wholeText.length - part3.length - 1,
+                    wholeText.length-1,
+                    Spannable.SPAN_INCLUSIVE_INCLUSIVE
+                )
+
+                binding.homeDonationPrimaryContent.text = spanText
+
+                // set gradient
+                addGradientToTextView(binding.homeDonationPrimaryContent, "#FFC529", "#FE724D")
+            }
+        }
+
+        homeViewModel.last2Donations.observe(viewLifecycleOwner) {
+            binding.homeSwipeRefresh.isRefreshing = false
+
+            it.first?.let { donation ->
+                setPhoto(requireContext(), binding.homeDonationLeftPhoto, donation.user.photo, R.drawable.default_user)
+                binding.homeDonationLeftTitle.text = donation.user.name
+                binding.homeDonationLeftContent.text = "${donation.donatedAmount}€ donirano u ${donation.timestamp}"
+            }
+
+            it.second?.let { donation ->
+                setPhoto(requireContext(), binding.homeDonationRightPhoto, donation.user.photo, R.drawable.default_user)
+                binding.homeDonationRightTitle.text = donation.user.name
+                binding.homeDonationRightContent.text = "${donation.donatedAmount}€ donirano u ${donation.timestamp}"
+            }
+        }
+
+        // SET UP VIEWPAGER
+
+        binding.homeViewpagerActions.adapter = ViewPagerAdapter(requireContext(), actions)
+
+        binding.homeViewpagerActions.offscreenPageLimit = 1
+
+        val nextItemVisiblePx = resources.getDimension(R.dimen.viewpager_next_item_visible)
+        val currentItemHorizontalMarginPx = resources.getDimension(R.dimen.viewpager_current_item_horizontal_margin)
+        val pageTranslationX = nextItemVisiblePx + currentItemHorizontalMarginPx
+        val pageTransformer = ViewPager2.PageTransformer { page: View, position: Float ->
+            page.translationX = -pageTranslationX * position
+        }
+        binding.homeViewpagerActions.setPageTransformer(pageTransformer)
+
+        val itemDecoration = HorizontalMarginItemDecoration(
+            requireContext(),
+            R.dimen.viewpager_current_item_horizontal_margin
+        )
+        binding.homeViewpagerActions.addItemDecoration(itemDecoration)
+
+        homeViewModel.actions.observe(viewLifecycleOwner) {
+            binding.homeSwipeRefresh.isRefreshing = false
+
+            actions.clear()
+            for (action in it) {
+                actions.add(action)
+            }
+
+            // infinite scroll
+            val first = actions[0]
+            val last = actions[actions.size-1]
+            actions.add(0, last)
+            actions.add(first)
+            binding.homeViewpagerActions.setCurrentItem(1, false)
+            val recyclerView = binding.homeViewpagerActions.getChildAt(0) as RecyclerView
+            val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+            val itemCount = binding.homeViewpagerActions.adapter?.itemCount ?: 0
+            recyclerView.addOnScrollListener(object: RecyclerView.OnScrollListener() {
+                override fun onScrolled(
+                    recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+                    val firstItemVisible
+                            = layoutManager.findFirstVisibleItemPosition()
+                    val lastItemVisible
+                            = layoutManager.findLastVisibleItemPosition()
+                    if (firstItemVisible == (itemCount - 1) && dx > 0) {
+                        recyclerView.scrollToPosition(1)
+                    } else if (lastItemVisible == 0 && dx < 0) {
+                        recyclerView.scrollToPosition(itemCount - 2)
+                    }
+                }
+            })
+
+            binding.homeViewpagerActions.adapter?.notifyDataSetChanged()
+        }
     }
 
 

@@ -67,6 +67,32 @@
         android:background="@drawable/login_bottom_sheet_background" />
 
     <TextView
+        android:id="@+id/register_text_have_account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Već imate nalog? "
+        android:textColor="@color/gray_text"
+        android:textSize="15sp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/register_text_login"
+        app:layout_constraintBottom_toBottomOf="parent" />
+    <TextView
+        android:id="@+id/register_text_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Prijavi se"
+        android:textColor="@color/red_on_cool_blue_gray"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@id/register_text_have_account"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ime i prezime"
@@ -151,36 +177,10 @@
         android:textSize="20sp"
         android:textStyle="bold"
         android:textAllCaps="false"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/register_edittext_password" />
-
-    <TextView
-        android:id="@+id/register_text_have_account"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Već imate nalog? "
-        android:textColor="@color/gray_text"
-        android:textSize="15sp"
-        android:layout_marginBottom="15dp"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/register_text_login"
-        app:layout_constraintBottom_toBottomOf="parent" />
-    <TextView
-        android:id="@+id/register_text_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Prijavi se"
-        android:textColor="@color/red_on_cool_blue_gray"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="15dp"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toEndOf="@id/register_text_have_account"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
 
     <ProgressBar
         android:id="@+id/register_progress"

@@ -36,10 +36,13 @@ class Slider3Fragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            if (canSlide) {
+            if (canSlide && findNavController().currentDestination?.id == R.id.navigation_slider3) {
                 findNavController().navigate(R.id.action_slider3_to_slider1)
             }
-        }, 2000)
+        }, 5000)
+
+        binding.slider3OverlayLeft.setOnClickListener { findNavController().navigate(R.id.action_slider3_to_slider2) }
+        binding.slider3OverlayRight.setOnClickListener { findNavController().navigate(R.id.action_slider3_to_slider1) }
 
         binding.slider3ButtonLogin.setOnClickListener { findNavController().navigate(R.id.action_slider3_to_login) }
         binding.slider3ButtonRegister.setOnClickListener { findNavController().navigate(R.id.action_slider3_to_register) }

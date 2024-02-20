@@ -37,11 +37,22 @@
         tools:layout="@layout/fragment_slider_1">
         <action
             android:id="@+id/action_slider1_to_slider2"
+            app:popUpTo="@id/navigation_slider1"
+            app:popUpToInclusive="true"
             app:enterAnim="@anim/nav_slide_in_right"
             app:exitAnim="@anim/nav_slide_out_left"
             app:popExitAnim="@anim/nav_slide_out_right"
             app:popEnterAnim="@anim/nav_slide_in_left"
             app:destination="@id/navigation_slider2" />
+        <action
+            android:id="@+id/action_slider1_to_slider3"
+            app:popUpTo="@id/navigation_slider1"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/nav_slide_in_left"
+            app:exitAnim="@anim/nav_slide_out_right"
+            app:popExitAnim="@anim/nav_slide_out_left"
+            app:popEnterAnim="@anim/nav_slide_in_right"
+            app:destination="@id/navigation_slider3" />
         <action
             android:id="@+id/action_slider1_to_login"
             app:popUpTo="@id/navigation_slider1"
@@ -68,11 +79,22 @@
         tools:layout="@layout/fragment_slider_2">
         <action
             android:id="@+id/action_slider2_to_slider3"
+            app:popUpTo="@id/navigation_slider2"
+            app:popUpToInclusive="true"
             app:enterAnim="@anim/nav_slide_in_right"
             app:exitAnim="@anim/nav_slide_out_left"
             app:popExitAnim="@anim/nav_slide_out_right"
             app:popEnterAnim="@anim/nav_slide_in_left"
             app:destination="@id/navigation_slider3" />
+        <action
+            android:id="@+id/action_slider2_to_slider1"
+            app:popUpTo="@id/navigation_slider2"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/nav_slide_in_left"
+            app:exitAnim="@anim/nav_slide_out_right"
+            app:popExitAnim="@anim/nav_slide_out_left"
+            app:popEnterAnim="@anim/nav_slide_in_right"
+            app:destination="@id/navigation_slider1" />
         <action
             android:id="@+id/action_slider2_to_login"
             app:popUpTo="@id/navigation_slider2"
@@ -99,11 +121,22 @@
         tools:layout="@layout/fragment_slider_3">
         <action
             android:id="@+id/action_slider3_to_slider1"
+            app:popUpTo="@id/navigation_slider3"
+            app:popUpToInclusive="true"
             app:enterAnim="@anim/nav_slide_in_right"
             app:exitAnim="@anim/nav_slide_out_left"
             app:popExitAnim="@anim/nav_slide_out_right"
             app:popEnterAnim="@anim/nav_slide_in_left"
             app:destination="@id/navigation_slider1" />
+        <action
+            android:id="@+id/action_slider3_to_slider2"
+            app:popUpTo="@id/navigation_slider3"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/nav_slide_in_left"
+            app:exitAnim="@anim/nav_slide_out_right"
+            app:popExitAnim="@anim/nav_slide_out_left"
+            app:popEnterAnim="@anim/nav_slide_in_right"
+            app:destination="@id/navigation_slider2" />
         <action
             android:id="@+id/action_slider3_to_login"
             app:popUpTo="@id/navigation_slider3"
@@ -225,6 +258,22 @@
             app:popExitAnim="@anim/fade_in"
             app:popEnterAnim="@anim/fade_out"
             app:destination="@id/navigation_profile" />
+
+        <action
+            android:id="@+id/action_home_to_leaderboard"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popExitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:destination="@id/navigation_leaderboard" />
+
+        <action
+            android:id="@+id/action_home_to_organizations"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popExitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:destination="@id/navigation_organizations" />
     </fragment>
 
     <fragment
@@ -344,8 +393,8 @@
             android:id="@+id/action_profile_to_edit_profile"
             app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/fade_out"
-            app:popExitAnim="@anim/fade_in"
-            app:popEnterAnim="@anim/fade_out"
+            app:popExitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
             app:destination="@id/navigation_edit_profile" />
 
         <action
@@ -379,6 +428,29 @@
             app:popExitAnim="@anim/fade_in"
             app:popEnterAnim="@anim/fade_out"
             app:destination="@id/navigation_profile" />
+        <action
+            android:id="@+id/action_edit_profile_to_slider1"
+            app:popUpTo="@id/navigation_edit_profile"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popExitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:destination="@id/navigation_slider1" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_leaderboard"
+        android:name="com.ets.pomozi.ui.home.LeaderboardFragment"
+        android:label="Leaderboard"
+        tools:layout="@layout/fragment_leaderboard">
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_organizations"
+        android:name="com.ets.pomozi.ui.home.OrganizationsFragment"
+        android:label="Organizations"
+        tools:layout="@layout/fragment_organizations">
     </fragment>
 
 </navigation>

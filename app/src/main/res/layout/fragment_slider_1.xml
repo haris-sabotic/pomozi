@@ -38,9 +38,10 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="30dp"
-        android:text="Podijelite i pomozite onima kojima je potrebno"
-        android:textSize="40sp"
+        android:paddingHorizontal="20dp"
+        style="@style/TextBold"
+        android:text="Podrži zajednicu:\nPomozimo i donirajmo zajedno!"
+        android:textSize="32sp"
         android:textColor="@color/cool_blue_gray"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/slider_1_dots"
@@ -73,5 +74,19 @@
             android:alpha="0.5"
             android:background="@drawable/white_circle" />
     </LinearLayout>
+
+    <View
+        android:id="@+id/slider_1_overlay_left"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/slider_1_overlay_right" />
+
+    <View
+        android:id="@+id/slider_1_overlay_right"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toEndOf="@id/slider_1_overlay_left"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

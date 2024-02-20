@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_splash,
                 R.id.navigation_slider1, R.id.navigation_slider2, R.id.navigation_slider3,
                 R.id.navigation_login, R.id.navigation_register,
-                R.id.navigation_edit_profile -> {
+                R.id.navigation_edit_profile, R.id.navigation_leaderboard, R.id.navigation_organizations -> {
                     navView?.visibility = View.GONE
                 }
 

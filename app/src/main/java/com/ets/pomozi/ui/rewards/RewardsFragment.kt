@@ -60,13 +60,11 @@ class RewardsFragment : Fragment() {
             rewardsViewModel.loadRewards(text.trim())
         }
 
-        // setup user photo and points
+        // setup user points
         userViewModel.userData.value?.let {
-            setPhoto(requireContext(), binding.rewardsHeaderPhoto, it.photo, R.drawable.default_user)
             binding.rewardsTextPoints.text = it.points.toString()
         }
         userViewModel.userData.observe(viewLifecycleOwner) {
-            setPhoto(requireContext(), binding.rewardsHeaderPhoto, it.photo, R.drawable.default_user)
             binding.rewardsTextPoints.text = it.points.toString()
         }
 
@@ -79,8 +77,12 @@ class RewardsFragment : Fragment() {
 
         binding.rewardsRecycler.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.rewardsRecycler.adapter = RewardsRecyclerViewAdapter(requireContext(), rewards) { reward ->
-            val action = RewardsFragmentDirections.actionRewardsToDialogRewardsBuy(reward)
-            findNavController().navigate(action)
+            userViewModel.userData.value?.let { user ->
+                if (reward.price <= user.points) {
+                    val action = RewardsFragmentDirections.actionRewardsToDialogRewardsBuy(reward)
+                    findNavController().navigate(action)
+                }
+            }
         }
 
         binding.rewardsEdittextSearch.setOnEditorActionListener { v, actionId, event ->

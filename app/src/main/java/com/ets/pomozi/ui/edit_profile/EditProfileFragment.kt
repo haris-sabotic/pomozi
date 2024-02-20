@@ -1,5 +1,6 @@
 package com.ets.pomozi.ui.edit_profile
 
+import android.content.Intent.getIntent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
@@ -20,8 +21,10 @@ import com.ets.pomozi.R
 import com.ets.pomozi.api.requests.EditUserRequest
 import com.ets.pomozi.databinding.FragmentEditProfileBinding
 import com.ets.pomozi.ui.UserViewModel
+import com.ets.pomozi.util.GlobalData
 import com.ets.pomozi.util.setPhoto
 import java.io.ByteArrayOutputStream
+
 
 class EditProfileFragment : Fragment() {
     private val userViewModel: UserViewModel by viewModels()
@@ -73,6 +76,7 @@ class EditProfileFragment : Fragment() {
         setPhoto(requireContext(), binding.editProfilePhoto, userData.photo, R.drawable.default_user)
         binding.editProfileEdittextName.setText(userData.name)
         binding.editProfileEdittextEmail.setText(userData.email)
+        binding.editProfileEdittextPhone.setText(userData.phone)
 
         userViewModel.error.observe(viewLifecycleOwner) {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
@@ -91,9 +95,17 @@ class EditProfileFragment : Fragment() {
             val name = binding.editProfileEdittextName.text.toString()
             val email = binding.editProfileEdittextEmail.text.toString()
             val password = binding.editProfileEdittextPassword.text.toString()
+            val phone = binding.editProfileEdittextPhone.text.toString()
 
-            val request = EditUserRequest(name, email, password, null, null, photo)
+            val request = EditUserRequest(name, email, password, phone, null, photo)
             userViewModel.editUser(request)
+        }
+
+        binding.editProfileTextLogOut.setOnClickListener {
+            GlobalData.saveToken(requireContext(), null)
+            val intent = requireActivity().intent
+            requireActivity().finish()
+            startActivity(intent)
         }
     }
 

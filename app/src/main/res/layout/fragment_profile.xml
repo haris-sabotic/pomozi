@@ -25,7 +25,7 @@
             android:id="@+id/profile_header_text_screen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Profile"
+            android:text="Profil"
             android:textColor="@color/red_on_cool_blue_gray"
             android:textSize="15sp"
             app:layout_constraintTop_toBottomOf="@id/profile_header_text_app"
@@ -67,7 +67,7 @@
             android:id="@+id/profile_text_edit_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Edit Profile"
+            android:text="Izmijeni profil"
             android:textColor="#00B3FF"
             android:textSize="13sp"
             android:layout_marginTop="5dp"
@@ -171,26 +171,28 @@
                     android:layout_height="wrap_content"
                     android:elevation="10dp"
                     android:clipToPadding="false"
-                    android:paddingVertical="20dp"
                     android:background="@drawable/red_rounded_rectangle"
                     android:gravity="center"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="15dp"
                     app:layout_constraintTop_toTopOf="parent">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        style="@style/TextBlack"
                         android:text="DONIRANO: "
                         android:textColor="@color/white"
-                        android:textSize="26sp"
-                        android:textStyle="bold" />
+                        android:textSize="26sp" />
 
                     <TextView
                         android:id="@+id/profile_info_money_text_amount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        style="@style/TextBlack"
                         android:text=""
                         android:textColor="@color/white"
-                        android:textSize="26sp"
-                        android:textStyle="bold" />
+                        android:textSize="26sp" />
                 </LinearLayout>
 
                 <TextView
@@ -232,6 +234,7 @@
                     android:id="@+id/profile_info_achievement_one_year"
                     android:layout_width="80dp"
                     android:layout_height="90dp"
+                    android:padding="5dp"
                     android:orientation="vertical"
                     android:gravity="center"
                     android:background="@drawable/white_rounded_rectangle"
@@ -251,13 +254,14 @@
                         android:text="1 godina"
                         android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textSize="14sp" />
+                        android:textSize="11sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/profile_info_achievement_ten_donations"
                     android:layout_width="80dp"
                     android:layout_height="90dp"
+                    android:padding="5dp"
                     android:orientation="vertical"
                     android:gravity="center"
                     android:background="@drawable/white_rounded_rectangle"
@@ -278,13 +282,14 @@
                         android:text="10 donacija"
                         android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textSize="14sp" />
+                        android:textSize="11sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/profile_info_achievement_hundred_donated"
                     android:layout_width="80dp"
                     android:layout_height="90dp"
+                    android:padding="5dp"
                     android:orientation="vertical"
                     android:gravity="center"
                     android:background="@drawable/white_rounded_rectangle"
@@ -305,13 +310,14 @@
                         android:text="100€ donirano"
                         android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textSize="14sp" />
+                        android:textSize="11sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/profile_info_achievement_account_created"
                     android:layout_width="80dp"
                     android:layout_height="90dp"
+                    android:padding="5dp"
                     android:orientation="vertical"
                     android:gravity="center"
                     android:background="@drawable/white_rounded_rectangle"
@@ -331,7 +337,7 @@
                         android:text="Nalog kreiran"
                         android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textSize="14sp" />
+                        android:textSize="11sp" />
                 </LinearLayout>
 
                 <TextView
@@ -374,6 +380,8 @@
             android:visibility="gone"
             android:layout_marginTop="20dp"
             android:clipChildren="false"
+            android:clipToPadding="false"
+            android:paddingBottom="80dp"
             app:layout_constraintTop_toBottomOf="@id/profile_text_info"
             app:layout_constraintBottom_toBottomOf="parent" />
 
@@ -385,6 +393,7 @@
             android:layout_marginTop="20dp"
             android:clipChildren="false"
             android:clipToPadding="false"
+            android:paddingBottom="80dp"
             android:paddingHorizontal="20dp"
             app:layout_constraintTop_toBottomOf="@id/profile_text_info"
             app:layout_constraintBottom_toBottomOf="parent" />

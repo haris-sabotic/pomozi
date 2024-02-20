@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_action_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/item_actions_background"
+    android:clipToPadding="false"
+    android:clipToOutline="true"
+    android:elevation="10dp">
+
+    <ImageView
+        android:id="@+id/item_action_photo"
+        android:layout_width="0dp"
+        android:layout_height="115dp"
+        android:src="@color/black"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/item_action_text_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/TextMedium"
+        android:text="Srcem za Crnu Goru! - Humanost"
+        android:textColor="#31343D"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toBottomOf="@id/item_action_photo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingHorizontal="20dp" />
+
+    <TextView
+        android:id="@+id/item_action_text_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Akcija Srcem za Crnu Goru pokrenuta je sa ciljem da se okupe svi ljudi velikog srca kako bi se priključili akciji koja će ujediniti Crnu Goru i dijasporu."
+        android:textColor="#31343D"
+        android:textSize="12sp"
+        android:paddingBottom="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_action_text_title"
+        android:paddingHorizontal="20dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

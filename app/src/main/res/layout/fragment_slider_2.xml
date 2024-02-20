@@ -41,9 +41,10 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="30dp"
-        android:text="Dostavite ih na odredjene \nlokacije"
-        android:textSize="40sp"
+        android:paddingHorizontal="20dp"
+        style="@style/TextBold"
+        android:text="Dostavite željene predmete organizacijama"
+        android:textSize="32sp"
         android:textColor="@color/white"
         android:textStyle="bold"
         android:layout_marginTop="50dp"
@@ -75,5 +76,19 @@
             android:alpha="0.5"
             android:background="@drawable/white_circle" />
     </LinearLayout>
+
+    <View
+        android:id="@+id/slider_2_overlay_left"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/slider_2_overlay_right" />
+
+    <View
+        android:id="@+id/slider_2_overlay_right"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toEndOf="@id/slider_2_overlay_left"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
