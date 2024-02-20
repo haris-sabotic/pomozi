@@ -52,6 +52,8 @@ class OrganizationsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        addGradientToTextView(binding.organizationsTextDonate, "#FE724D", "#FFC529")
+
         binding.organizationsArrowBack.setOnClickListener { findNavController().popBackStack() }
 
         organizationsViewModel.error.observe(viewLifecycleOwner) {
