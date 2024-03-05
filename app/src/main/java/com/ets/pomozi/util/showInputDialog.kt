@@ -6,7 +6,9 @@ import android.content.res.Resources
 import android.util.TypedValue
 import android.widget.EditText
 import android.widget.LinearLayout
+import androidx.core.content.ContextCompat
 import androidx.core.view.children
+import com.ets.pomozi.R
 
 
 fun showInputDialog(context: Context, title: String, inputType: Int, lineCount: Int? = null,  onSubmit: (String) -> Unit) {
@@ -40,7 +42,11 @@ fun showInputDialog(context: Context, title: String, inputType: Int, lineCount: 
     }
     builder.setNegativeButton("Cancel") { dialog, _ -> dialog.cancel() }
 
-    builder.show()
+    val dialog = builder.create()
+
+    dialog.window?.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.white_more_more_rounded_rectangle))
+
+    dialog.show()
 }
 
 private fun Float.toDp(context: Context): Int {

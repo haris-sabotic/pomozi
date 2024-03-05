@@ -1,6 +1,7 @@
 package com.ets.pomozi.ui.home
 
 import android.content.Context
+import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,9 +49,6 @@ class LeaderboardRecyclerViewAdapter (
         viewHolder.textNumber.text = "${position + 4}"
 
         setPhoto(context, viewHolder.photo, user.photo, R.drawable.default_user)
-        Glide.with(context)
-            .load(GlobalData.PHOTO_PREFIX + user.photo)
-            .into(viewHolder.photo)
     }
 
     override fun getItemCount() = if (leaderboard.size <= 3) 0 else (leaderboard.size - 3)

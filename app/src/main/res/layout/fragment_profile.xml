@@ -149,12 +149,13 @@
             app:layout_constraintStart_toStartOf="@id/profile_text_rewards"
             app:layout_constraintEnd_toEndOf="@id/profile_text_rewards" />
 
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
             android:id="@+id/profile_scrollview_info"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="10dp"
             android:clipChildren="false"
+            android:clipToPadding="false"
             android:paddingTop="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/profile_text_info">
@@ -163,7 +164,9 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="center_horizontal"
-                android:layout_marginHorizontal="20dp">
+                android:paddingBottom="80dp"
+                android:paddingHorizontal="20dp"
+                android:clipToPadding="false">
 
                 <LinearLayout
                     android:id="@+id/profile_info_money_layout"
@@ -371,7 +374,7 @@
                     app:layout_constraintTop_toBottomOf="@id/profile_info_text_about_me"
                     app:layout_constraintStart_toStartOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/profile_recyclerview_activity"

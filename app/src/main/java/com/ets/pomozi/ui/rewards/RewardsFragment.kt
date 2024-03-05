@@ -81,6 +81,8 @@ class RewardsFragment : Fragment() {
                 if (reward.price <= user.points) {
                     val action = RewardsFragmentDirections.actionRewardsToDialogRewardsBuy(reward)
                     findNavController().navigate(action)
+                } else {
+                    Toast.makeText(requireContext(), "Nemate dovoljno poena da biste kupili nagradu", Toast.LENGTH_SHORT).show()
                 }
             }
         }

@@ -5,12 +5,15 @@ import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.TypefaceSpan
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,6 +24,8 @@ import com.ets.pomozi.models.ActionModel
 import com.ets.pomozi.models.OrganizationModel
 import com.ets.pomozi.util.addGradientToTextView
 import com.ets.pomozi.util.setPhoto
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlin.math.abs
 
 
@@ -124,6 +129,27 @@ class HomeFragment : Fragment() {
                 binding.homeDonationRightTitle.text = donation.user.name
                 binding.homeDonationRightContent.text = "${donation.donatedAmount}€ donirano u ${donation.timestamp}"
             }
+
+            // MAKE THEM HAVE THE SAME HEIGHT (IF THEY DON'T ALREADY)
+            viewLifecycleOwner.lifecycleScope.launch {
+                delay(500)
+
+                val leftHeight = binding.homeDonationLeftLayout.height
+                val rightHeight = binding.homeDonationRightLayout.height
+
+                if (leftHeight < rightHeight) {
+                    val lp = binding.homeDonationLeftLayout.layoutParams
+                    lp.height = rightHeight
+                    binding.homeDonationLeftLayout.layoutParams = lp
+                }
+
+                if (rightHeight < leftHeight) {
+                    val lp = binding.homeDonationRightLayout.layoutParams
+                    lp.height = leftHeight
+                    binding.homeDonationRightLayout.layoutParams = lp
+                }
+            }
+
         }
 
         // SET UP VIEWPAGER

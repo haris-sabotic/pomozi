@@ -54,6 +54,9 @@
             android:background="@drawable/spinner_background"
             android:paddingVertical="20dp"
             android:paddingHorizontal="15dp"
+            android:spinnerMode="dropdown"
+            android:popupBackground="@drawable/white_rounded_rectangle"
+            tools:listitem="@layout/support_simple_spinner_dropdown_item"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@id/map_filters_button_save" />
